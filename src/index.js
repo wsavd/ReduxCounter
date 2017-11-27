@@ -1,6 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import Counter from './components/Counter'
 
 const counterReducer = (state=0, action) => {
   switch (action.type) {
@@ -14,19 +16,15 @@ const counterReducer = (state=0, action) => {
 }
 
 const store = createStore(counterReducer)//создали хранилище состояния и передали функцию по управлению им
-const Counter = () => {
-  return(
-    <div>
-      <button onClick={ () => store.dispatch( {type: 'INCREMENT'} ) }>+</button>
-      {store.getState()}
-      <button onClick={ () => store.dispatch( { type: 'DECREMENT'} ) }>-</button>
-    </div>
+
+const App = () => {
+  return (
+    <Provider store={store}>
+      <div>
+        <Counter />
+      </div>
+    </Provider>
   )
 }
 
-const reduxRender = () => {
-  render(<Counter />, document.getElementById('root'));
-}
-
-reduxRender()
-store.subscribe(reduxRender)//как состояние изменилось, мы рендерим
+render(<App />, document.getElementById('root'));
