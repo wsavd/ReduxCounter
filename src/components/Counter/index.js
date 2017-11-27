@@ -1,12 +1,13 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {increment, decrement} from '../../actions'
 
 const Counter = (props) => {
   return (
     <div>
-      <button onClick={() => props.dispatch({ type: 'INCREMENT' })}>+</button>
+      <button onClick={() => props.dispatch(increment())}>+</button>
       {props.count}
-      <button onClick={() => props.dispatch({ type: 'DECREMENT' })}>-</button>
+      <button onClick={() => props.dispatch(decrement())}>-</button>
     </div>
   )
 }
