@@ -7,9 +7,9 @@ import Counter from './components/Counter'
 const counterReducer = (state=0, action) => {
   switch (action.type) {
     case 'INCREMENT': 
-      return state + 1//возвращаем новую версию состояния
+      return state + action.value//возвращаем новую версию состояния
     case 'DECREMENT':
-      return state - 1
+      return state - action.value
     default:
       return state
   }
